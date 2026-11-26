@@ -1,0 +1,9 @@
+{
+  "name": "ui-ux-giasu10diem",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix kit install --no-audit --no-fund && npm --prefix kit run dev -- --open",
+    "build": "npm --prefix kit ci --no-audit --no-fund && npm --prefix kit run build",
+    "preview": "npm --prefix kit run preview"
+  }
+}

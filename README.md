@@ -12,6 +12,16 @@ Thiết kế tham khảo từ [Astryx](https://github.com/meta/astryx) của Met
 | Claude hoặc agent khác | [CLAUDE.md](CLAUDE.md) |
 | Muốn xem component bằng mắt | [gallery/](gallery/README.md) |
 
+## Xem trang chấm component trên máy
+
+Cần Node 22 trở lên. Ở thư mục gốc repo:
+
+```bash
+npm run dev
+```
+
+Trình duyệt tự mở http://localhost:5173/. Gốc repo trước đây không có `package.json` nên `npm run dev` báo lỗi; giờ đã có.
+
 ## Trong repo có gì
 
 | Đường dẫn | Nội dung |

@@ -3,7 +3,7 @@
 Một trang tĩnh: xem từng component viết bằng shadcn và Tailwind 4 (cùng stack với web), chấm 1 đến 5 sao, ghi lý do, rồi xuất CSV hoặc JSON cho agent sửa.
 
 ```bash
-npm ci
+npm ci             # chạy trong thư mục kit/, hoặc `npm run dev` ở gốc repo
 npm run dev        # xem trên máy
 npm run build      # ra dist/, tự kiểm kiểu
 node src/page/export.check.ts   # kiểm xuất CSV, JSON
