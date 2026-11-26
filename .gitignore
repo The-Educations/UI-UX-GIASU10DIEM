@@ -1,0 +1,7 @@
+node_modules/
+.cache/
+gallery/out/
+gallery/src/vendor/
+gallery/src/manifest.js
+gallery/measure/
+.DS_Store

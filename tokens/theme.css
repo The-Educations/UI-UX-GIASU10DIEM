@@ -1,0 +1,110 @@
+/*
+ * Token của Gia Sư 10 Điểm, cho Tailwind 4 và shadcn.
+ * Khối :root lấy từ app/src/styles.css của web (26/11/2026).
+ * Khối nền tối là ĐỀ XUẤT, chưa duyệt, web chưa dùng.
+ * Font: "Be Vietnam Pro" cho giao diện, "Lora" cho tên gia sư và dấu hiệu thương hiệu.
+ */
+:root {
+  --background: #faf8f3;
+  --foreground: #282820;
+  --card: #fffefa;
+  --card-foreground: #282820;
+  --popover: #fffefa;
+  --popover-foreground: #282820;
+  --primary: #852f36;
+  --primary-foreground: #fffdfa;
+  --secondary: #eeeae0;
+  --secondary-foreground: #484538;
+  --muted: #f0ede5;
+  --muted-foreground: #63605a;
+  --accent: #e9e5dc;
+  --accent-foreground: #282820;
+  --destructive: #a42a30;
+  --border: #dfdbd1;
+  --input: #c9c4b8;
+  --ring: #852f36;
+  --radius: 0.625rem;
+
+  --positive: #32614c;
+  --positive-soft: #e4eee6;
+  --warning: #79541d;
+  --warning-soft: #f5ebd5;
+
+  /* Bề mặt phân tầng bằng độ đậm nhạt, không bằng bóng đổ. */
+  --surface-side: #f3f0e8;
+  --surface-hover: #ebe7dd;
+  --surface-active: #e4dfd3;
+
+  /* Màu nhận diện lớp học và người: nền nhạt, chữ cùng tông. */
+  --pastel-rose: #f6e1e1;    --pastel-rose-ink: #7d3038;
+  --pastel-peach: #f8e6d6;   --pastel-peach-ink: #7b4a22;
+  --pastel-butter: #f4ecca;  --pastel-butter-ink: #66561a;
+  --pastel-sage: #e1ebdc;    --pastel-sage-ink: #3a5a3c;
+  --pastel-mint: #d8ece5;    --pastel-mint-ink: #275b4d;
+  --pastel-sky: #dde9f3;     --pastel-sky-ink: #2e5070;
+  --pastel-lilac: #e8e2f0;   --pastel-lilac-ink: #54456f;
+  --pastel-sand: #ece5da;    --pastel-sand-ink: #5b4b34;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+  --duration-slow: 360ms;
+  color-scheme: light;
+}
+
+/* ĐỀ XUẤT: nền tối. Bật bằng class "dark" trên <html>. Chưa có màu pastel cho nền tối. */
+.dark {
+  --background: #161512;
+  --foreground: #efece3;
+  --card: #1f1e1a;
+  --card-foreground: #efece3;
+  --popover: #24231f;
+  --popover-foreground: #efece3;
+  --primary: #e8969c;
+  --primary-foreground: #2a0d10;
+  --secondary: #292823;
+  --secondary-foreground: #efece3;
+  --muted: #292823;
+  --muted-foreground: #aaa69b;
+  --accent: #33312b;
+  --accent-foreground: #efece3;
+  --destructive: #ff8a80;
+  --border: #3a3831;
+  --input: #545148;
+  --ring: #e8969c;
+  --positive: #7fbf9e;
+  --positive-soft: #1f3a2d;
+  --warning: #e0bd78;
+  --warning-soft: #3d3016;
+  --surface-side: #1b1a16;
+  --surface-hover: #2b2a25;
+  --surface-active: #35332d;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "Be Vietnam Pro", sans-serif;
+}
