@@ -14,6 +14,21 @@ import { prefs, useRatings } from "./store.ts"
 
 type Filter = "all" | "todo" | "fix"
 
+/** Điện thoại: hàng bộ lọc ẩn khi cuộn xuống, hiện lại khi cuộn lên hoặc ở đầu trang. Máy tính luôn hiện (CSS md:). */
+function useShowOnScrollUp() {
+  const [show, setShow] = React.useState(true)
+  React.useEffect(() => {
+    let last = scrollY
+    const on = () => {
+      const y = scrollY
+      if (Math.abs(y - last) > 8) { setShow(y < last || y < 80); last = y }
+    }
+    addEventListener("scroll", on, { passive: true })
+    return () => removeEventListener("scroll", on)
+  }, [])
+  return show
+}
+
 export function Page() {
   const { ratings, set, saved } = useRatings()
   const [width, setWidth] = React.useState<Width>("phone")
@@ -21,6 +36,7 @@ export function Page() {
   const [group, setGroup] = React.useState("all")
   const [dark, setDark] = React.useState(() => prefs.get("dark") === "1")
   const s = summary(ratings)
+  const showFilters = useShowOnScrollUp()
 
   React.useEffect(() => { document.documentElement.classList.toggle("dark", dark); prefs.set("dark", dark ? "1" : "0") }, [dark])
 
@@ -40,8 +56,8 @@ export function Page() {
 
   return (
     <>
-      <header>
-        <div className="sticky top-0 z-30 border-b bg-background">
+      <header className="sticky top-0 z-30 border-b bg-background">
+        <div>
           <div className="mx-auto flex h-16 max-w-[1160px] items-center justify-between gap-3 px-4 lg:px-10">
             <div className="grid min-w-0">
               <h1 className="m-0 truncate">Chấm component</h1>
@@ -51,8 +67,8 @@ export function Page() {
           </div>
           <div className="h-0.5 bg-muted" aria-hidden><div className="h-full bg-primary transition-[width] duration-[var(--duration-base)]" style={{ width: `${(s.rated / s.total) * 100}%` }} /></div>
         </div>
-        <div className="border-b bg-background md:sticky md:top-[66px] md:z-20">
-          <div className="mx-auto flex max-w-[1160px] flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2 lg:px-10">
+        <div inert={!showFilters || undefined} className={`grid border-t transition-[grid-template-rows] duration-[var(--duration-base)] ease-[var(--ease-out)] md:grid-rows-[1fr] ${showFilters ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+          <div className="mx-auto flex min-h-0 w-full max-w-[1160px] flex-wrap items-center gap-x-4 gap-y-2 overflow-hidden px-4 lg:px-10 [&>*]:my-1">
             <SegmentedControl className="max-md:hidden" aria-label="Bề ngang khung xem" value={width} onValueChange={(v) => setWidth(v as Width)} options={[{ value: "phone", label: "Điện thoại" }, { value: "tablet", label: "Máy tính bảng" }, { value: "desktop", label: "Máy tính" }]} />
             <SegmentedControl aria-label="Lọc theo trạng thái" value={filter} onValueChange={(v) => setFilter(v as Filter)} options={[{ value: "all", label: "Tất cả" }, { value: "todo", label: "Chưa chấm" }, { value: "fix", label: "Cần sửa" }]} />
             <div className="w-full sm:w-56"><Select value={group} onValueChange={setGroup}>
