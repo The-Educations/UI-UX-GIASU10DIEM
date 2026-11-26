@@ -11,7 +11,13 @@ Cập nhật: 26/11/2026.
 
 Trang xem thử đã xuất bản (riêng tư, phải được chủ trang chia sẻ mới mở được): https://claude.ai/artifact/ACHVV25rSmWRzaoMByeq6Q
 
+- Dựng `kit/`: 57 component shadcn + Tailwind, trang chấm 1–5 sao kèm lý do, xuất CSV và JSON, workflow GitHub Pages. 49 tên Astryx còn lại được ghi lý do không dựng riêng.
+
 ## Chưa làm
+
+- [ ] Bật GitHub Pages (Settings → Pages → Source: GitHub Actions). Repo đang riêng tư; trang Pages sẽ công khai.
+- [ ] Chủ dự án chấm trên trang kit, xuất tệp, đưa cho agent.
+- [ ] Đưa nhánh `fix/touch-targets-44` của web (đã commit, chưa push) lên PR: vá 4 chỗ dưới 44px.
 
 - [ ] Chấm “Ưng / Chưa ưng” cho từng component và layout. Lúc tạo repo chưa có lượt chấm nào, nên chưa loại component nào.
 - [ ] Duyệt màu nền tối. Đây là đề xuất mới, web hiện chỉ có nền sáng.

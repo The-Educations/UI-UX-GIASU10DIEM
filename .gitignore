@@ -5,3 +5,4 @@ gallery/src/vendor/
 gallery/src/manifest.js
 gallery/measure/
 .DS_Store
+kit/dist/

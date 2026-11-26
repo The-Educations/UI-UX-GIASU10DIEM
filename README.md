@@ -24,6 +24,7 @@ Thiết kế tham khảo từ [Astryx](https://github.com/meta/astryx) của Met
 | `references/layouts/` | Mã nguồn các layout hợp với web, để tham khảo bố cục |
 | `references/sources.md` | Bộ UI/UX tìm thêm, kèm giấy phép |
 | `gallery/` | Trang xem thử toàn bộ component |
+| `kit/` | Trang chấm sao component viết bằng shadcn và Tailwind, xuất CSV hoặc JSON cho agent ([kit/README.md](kit/README.md)) |
 
 ## Cách dùng (đã chọn)
 

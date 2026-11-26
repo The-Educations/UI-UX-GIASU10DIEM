@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;450;500;550;600;650;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
+@import "tailwindcss";
+@import "../../tokens/theme.css";
+
+@custom-variant dark (&:is(.dark, .dark *));
+
+/*
+ * Phần dưới chép nguyên từ app/src/styles.css của web (khối @layer base và các luật data-slot nền).
+ * Giữ giống web thì component trong trang này cao 44px, bo 10px như web thật.
+ * Muốn đổi: sửa bên web trước, rồi chép lại.
+ */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  button,
+  a,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button,
+  a,
+  select,
+  input[type="checkbox"],
+  input[type="radio"] {
+    touch-action: manipulation;
+  }
+  button:not(:disabled),
+  a {
+    cursor: pointer;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(24px, 2.2vw, 30px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.3;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 550;
+    letter-spacing: -0.025em;
+    line-height: 1.45;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 550;
+    line-height: 1.5;
+  }
+  strong {
+    font-weight: 600;
+  }
+  small {
+    font-size: 12.5px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+  }
+  ::selection {
+    background: #e8d6ce;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    accent-color: var(--primary);
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+}
+[data-slot="button"] {
+  min-height: 44px;
+  border-radius: 10px;
+  box-shadow: none;
+  transition:
+    background-color 0.16s ease-out,
+    color 0.16s ease-out,
+    border-color 0.16s ease-out,
+    transform 0.12s ease-out;
+}
+[data-slot="button"]:not(:disabled):active {
+  transform: scale(0.98);
+}
+[data-slot="input"],
+[data-slot="select-trigger"] {
+  min-height: 44px;
+  background: var(--card);
+  width: 100%;
+  font-size: 15px;
+  box-shadow: none;
+}
+[data-slot="textarea"] {
+  min-height: 108px;
+  background: var(--card);
+  box-shadow: none;
+}
+[data-slot="field-label"] {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+[data-slot="select-value"] {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+[data-slot="dialog-content"] {
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+}
+/* Radix keeps closing surfaces mounted until these animations finish. */
+@keyframes dialog-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes dialog-leave {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(6px); }
+}
+@keyframes overlay-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes overlay-leave { from { opacity: 1; } to { opacity: 0; } }
+[data-slot="dialog-overlay"][data-state="open"] { animation: overlay-enter 180ms cubic-bezier(.16, 1, .3, 1); }
+[data-slot="dialog-content"][data-state="open"] { animation: dialog-enter 180ms cubic-bezier(.16, 1, .3, 1); }
+[data-slot="dialog-overlay"][data-state="closed"] { animation: overlay-leave 120ms ease-out; }
+[data-slot="dialog-content"][data-state="closed"] { animation: dialog-leave 120ms ease-out; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="dialog-content"][data-state="open"] { animation-name: overlay-enter; }
+  [data-slot="dialog-content"][data-state="closed"] { animation-name: overlay-leave; }
+}
+[data-slot="sheet-content"] {
+  background: var(--background);
+}
+[data-slot="dialog-close"],
+[data-slot="sheet-close"] {
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-content: center;
+}
+[data-slot="badge"] {
+  font-size: 12px;
+  font-weight: 450;
+  flex-shrink: 0;
+  padding: 3px 8px;
+}
+[data-slot="tabs-list"] {
+  height: 44px;
+  background: var(--muted);
+  gap: 4px;
+}
+[data-slot="tabs-trigger"] {
+  min-height: 36px;
+  gap: 8px;
+  padding: 0 16px;
+}
+[data-slot="tabs-content"] {
+  margin-top: 24px;
+}
+[data-slot="field-group"] {
+  gap: 20px;
+}
+[data-slot="empty"] {
+  padding: 48px 20px;
+  background: var(--muted);
+  border-radius: 10px;
+}
+[data-slot="alert"] {
+  margin: 16px 0;
+}
+
+/* Chỉ của trang chấm */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+html { scroll-padding-top: 88px; }
+@keyframes acc-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
+@keyframes acc-up { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
+
+/* Đã vá bên web ở nhánh fix/touch-targets-44 (Button trong Trigger asChild, nút icon, ô tìm Command, Tab). Giữ giống web. */
+:where(button, a):where([data-variant][data-size]) { min-height: 44px; border-radius: 10px; box-shadow: none; }
+:where(button, a):where([data-size="icon"], [data-size="icon-lg"]) { min-width: 44px; }
+[data-slot="command-input-wrapper"], [data-slot="command-input"] { min-height: 44px; }
+[data-slot="tabs-list"] { min-height: 50px; }
+[data-slot="tabs-trigger"] { min-height: 44px; }
