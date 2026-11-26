@@ -12,7 +12,7 @@ Cập nhật: 26/11/2026.
 
 Trang xem thử đã xuất bản (riêng tư, phải được chủ trang chia sẻ mới mở được): https://claude.ai/artifact/ACHVV25rSmWRzaoMByeq6Q
 
-- Dựng `kit/`: 57 component shadcn + Tailwind, trang chấm 1–5 sao kèm lý do, xuất CSV và JSON, workflow GitHub Pages. 49 tên Astryx còn lại được ghi lý do không dựng riêng.
+- Dựng `kit/`: 63 component shadcn + Tailwind, trang chấm 1–5 sao kèm lý do, xuất CSV và JSON, workflow GitHub Pages. 49 tên Astryx còn lại được ghi lý do không dựng riêng.
 
 ## Chưa làm
 
