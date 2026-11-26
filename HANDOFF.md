@@ -22,7 +22,7 @@ Trang xem thử đã xuất bản (riêng tư, phải được chủ trang chia 
 - [ ] Chấm “Ưng / Chưa ưng” cho từng component và layout. Lúc tạo repo chưa có lượt chấm nào, nên chưa loại component nào.
 - [ ] Duyệt màu nền tối. Đây là đề xuất mới, web hiện chỉ có nền sáng.
 - [ ] Áp token vào web. Chưa sửa gì trong repo web.
-- [x] Repo web đã trỏ tới repo này trong `AGENTS.md` (PR #166).
+- [x] Repo web trỏ tới repo này trong `docs/ui-ux-kit.md` (PR #166). `AGENTS.md` và `CLAUDE.md` của web bị git ignore toàn máy nên không đưa lên được.
 - [ ] Lấy các mẫu trong `references/sources.md` (hiện mới có link và minh hoạ, chưa chép mã gốc).
 - [ ] Đo dung lượng và tốc độ trên web thật, thử trên điện thoại tầm trung.
 - [ ] Bàn lại: ô nhập trên web đang dùng chữ 14px, iPhone sẽ tự phóng to khi bấm vào. Đề xuất 16px trên màn cảm ứng.
