@@ -14,9 +14,15 @@ Trang xem thử đã xuất bản (riêng tư, phải được chủ trang chia 
 
 - Dựng `kit/`: 63 component shadcn + Tailwind, trang chấm 1–5 sao kèm lý do, xuất CSV và JSON, workflow GitHub Pages. 49 tên Astryx còn lại được ghi lý do không dựng riêng.
 
+- Làm lại theo nền tảng (26/11/2026, tối): `guidelines/platforms.md` (nguồn: MDN, W3C, Chrome, Tailwind), `tokens/platform.css`, lịch tuần (điện thoại theo ngày, màn rộng là lưới), ô ngày giờ, Button loading, Tabs cuộn, Sheet và Toast chừa vùng an toàn. Cột `remade` trong tệp xuất ghi chỗ khác bản web.
+- Sửa lỗi thanh đầu trang chấm không dính khi cuộn (lỗi do tôi gây ra ở lần sửa trước, bắt được nhờ test cuộn).
+- CI: `kit/scripts/audit.mjs` duyệt Chromium, Firefox, WebKit, iPhone 15, Pixel 7; `.github/workflows/ci.yml` chạy nó trên mỗi PR. Pages bật tại https://the-educations.github.io/UI-UX-GIASU10DIEM/.
+- Web: PR thêm test thanh điều hướng dính và workflow cross-browser (không chặn deploy). CI chính của web vốn đã đủ (typecheck, test, audit, build, wrangler dry-run, e2e 4 phần, deploy kèm smoke); 15 lần deploy gần nhất đều thành công.
+
 ## Chưa làm
 
-- [ ] Bật GitHub Pages: Settings → Pages → Source: GitHub Actions (cần quyền admin repo), rồi chạy workflow "Trang chấm component".
+- [ ] Chấm lại trang kit và ghi lý do ở từng mục không ưng; chưa có lý do thì chưa biết sửa gì ngoài phần nền tảng đã làm.
+- [ ] Chưa kiểm trên iOS và Android thật, Windows High Contrast thật, trình đọc màn hình.
 - [ ] Chủ dự án chấm trên trang kit, xuất tệp, đưa cho agent.
 - [ ] Đưa nhánh `fix/touch-targets-44` của web (đã commit, chưa push) lên PR: vá 4 chỗ dưới 44px.
 
