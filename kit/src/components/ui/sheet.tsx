@@ -70,7 +70,7 @@ function SheetContent({
           side === "top" &&
             "inset-x-0 top-0 h-auto border-b",
           side === "bottom" &&
-            "inset-x-0 bottom-0 h-auto border-t",
+            "inset-x-0 bottom-0 h-auto max-h-[85dvh] overflow-y-auto border-t pb-[env(safe-area-inset-bottom)]",
           className
         )}
         {...props}

@@ -10,6 +10,9 @@ import { ResultState } from "@/components/ui/result-state"
 import { StatTile } from "@/components/ui/stat-tile"
 import { Skeleton } from "@/components/ui/skeleton"
 import { money } from "@/components/ui/timestamp"
+import { DateField } from "@/components/ui/date-field"
+import { TimeRange } from "@/components/ui/time-select"
+import { WeeklySchedulePicker, summarizeDay } from "@/components/ui/weekly-schedule"
 import { States, EmptyBox, Locked, ErrorBox } from "./helpers"
 
 export const otpInput = () => {
@@ -96,3 +99,32 @@ export const statTile = () => (
     error: <ErrorBox what="số liệu" />,
   }} />
 )
+
+export const dateInput = () => {
+  const [d, setD] = React.useState("2026-11-20")
+  const [r, setR] = React.useState(["19:00", "18:00"])
+  return (
+    <States views={{
+      ok: (
+        <div className="grid gap-5">
+          <Field><FieldLabel htmlFor="df">Ngày học thử</FieldLabel><DateField id="df" label="Ngày học thử" value={d} onChange={setD} min="2026-11-27" max="2026-12-31" /></Field>
+          <TimeRange label="Giờ học" start={r[0]} end={r[1]} onChange={(a, b) => setR([a, b])} from="06:00" to="22:00" step={30} />
+        </div>
+      ),
+      loading: <div className="grid gap-3"><Skeleton className="h-11 w-full" /><Skeleton className="h-11 w-full" /></div>,
+      locked: <Locked why="Ngày học đã chốt, không đổi được khi còn dưới 4 giờ." />,
+    }} />
+  )
+}
+
+export const weeklySchedule = () => {
+  const [v, setV] = React.useState<Set<number>>(() => new Set([18, 19, 20].map((h) => h * 7 + 2).concat([19, 20].map((h) => h * 7 + 5))))
+  return (
+    <States views={{
+      ok: <div className="grid gap-4"><WeeklySchedulePicker label="Lịch rảnh trong tuần" value={v} onChange={setV} /><p className="m-0 text-[12.5px] text-muted-foreground">Thứ 4: {summarizeDay(v, 2) || "chưa chọn"}</p></div>,
+      loading: <div className="grid gap-3"><Skeleton className="h-14 w-full" /><Skeleton className="h-40 w-full" /></div>,
+      locked: <WeeklySchedulePicker label="Lịch rảnh trong tuần" value={v} onChange={setV} disabled />,
+      error: <ErrorBox what="lịch rảnh" />,
+    }} />
+  )
+}

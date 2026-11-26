@@ -1,4 +1,5 @@
 import * as React from "react"
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 import { cn } from "cn"
 
 const wd = new Intl.DateTimeFormat("vi-VN", { weekday: "short" })
@@ -9,14 +10,19 @@ const key = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
 /** Dải ngày để chọn buổi học: vuốt ngang trên điện thoại, mũi tên đổi ngày. Ngày không chọn được vẫn hiện, kèm chữ "kín lịch". */
 function DayStrip({ days, value, onChange, isFull, label, className }: { days: Date[]; value: Date | null; onChange: (d: Date) => void; isFull?: (d: Date) => boolean; label: string; className?: string }) {
   const refs = React.useRef<(HTMLButtonElement | null)[]>([])
+  const scroller = React.useRef<HTMLDivElement>(null)
+  const nudge = (dir: number) => scroller.current?.scrollBy({ left: dir * scroller.current.clientWidth * 0.8, behavior: "smooth" })
   const idx = value ? days.findIndex((d) => key(d) === key(value)) : -1
   const go = (to: number) => {
     for (let n = to; n >= 0 && n < days.length; n += to > idx ? 1 : -1) {
       if (!isFull?.(days[n])) { onChange(days[n]); refs.current[n]?.focus(); return }
     }
   }
+  const arrow = "hidden size-11 shrink-0 place-content-center self-center rounded-full border bg-card outline-none hover:bg-(--surface-hover) focus-visible:ring-[3px] focus-visible:ring-ring/50 [@media(hover:hover)_and_(pointer:fine)]:grid"
   return (
-    <div role="radiogroup" aria-label={label} className={cn("-mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] *:shrink-0 *:snap-start", className)}>
+    <div className={cn("flex items-center gap-1", className)}>
+      <button type="button" tabIndex={-1} aria-label="Các ngày trước" onClick={() => nudge(-1)} className={arrow}><ChevronLeftIcon className="size-4" /></button>
+      <div ref={scroller} data-scroll role="radiogroup" aria-label={label} className="-mx-4 flex min-w-0 flex-1 snap-x gap-2 overflow-x-auto px-4 pb-1 *:shrink-0 *:snap-start [@media(hover:hover)_and_(pointer:fine)]:mx-0 [@media(hover:hover)_and_(pointer:fine)]:px-0">
       {days.map((d, i) => {
         const full_ = !!isFull?.(d)
         const on = i === idx
@@ -43,6 +49,8 @@ function DayStrip({ days, value, onChange, isFull, label, className }: { days: D
           </button>
         )
       })}
+      </div>
+      <button type="button" tabIndex={-1} aria-label="Các ngày sau" onClick={() => nudge(1)} className={arrow}><ChevronRightIcon className="size-4" /></button>
     </div>
   )
 }

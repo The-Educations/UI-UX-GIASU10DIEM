@@ -183,7 +183,7 @@ export const fileInput = () => {
   const [f, setF] = React.useState<File | null>(null)
   return (
     <States views={{
-      ok: <Field><FieldLabel>Ảnh thẻ sinh viên</FieldLabel><FileInput accept="image/*,.pdf" maxMB={5} label="Chọn ảnh hoặc PDF" file={f} onFile={setF} /></Field>,
+      ok: <Field><FieldLabel>Ảnh thẻ sinh viên</FieldLabel><FileInput camera="environment" accept="image/*,.pdf" maxMB={5} label="Chọn ảnh hoặc PDF" file={f} onFile={setF} /></Field>,
       loading: <Loading text="Đang tải tệp lên…" />,
       locked: <Field data-disabled="true"><FieldLabel>Ảnh thẻ sinh viên</FieldLabel><Button variant="outline" disabled>Đã được duyệt, không đổi được</Button></Field>,
     }} />

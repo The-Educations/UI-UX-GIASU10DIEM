@@ -1,0 +1,83 @@
+name: CI
+
+# Mỗi pull request: build, kiểm xuất tệp, rồi duyệt trang bằng Chromium, Firefox, WebKit
+# (cuộn, thanh dính, bàn phím, xuất JSON, tràn ngang, vùng chạm 44px ở 64 demo).
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build và kiểm xuất tệp
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: kit/package-lock.json
+      - run: npm ci
+        working-directory: kit
+      - run: node src/page/export.check.ts
+        working-directory: kit
+      - run: npm run build
+        working-directory: kit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kit-dist
+          path: kit/dist
+          retention-days: 3
+
+  audit:
+    name: Duyệt trên ${{ matrix.engine }}
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: kit/package-lock.json
+      - run: npm ci
+        working-directory: kit
+      - uses: actions/download-artifact@v4
+        with:
+          name: kit-dist
+          path: kit/dist
+      - run: npx playwright install --with-deps ${{ matrix.engine }}
+        working-directory: kit
+      - name: Mở trang đã build và duyệt
+        working-directory: kit
+        run: |
+          npx vite preview --port 4173 --strictPort > "$RUNNER_TEMP/preview.log" 2>&1 &
+          for _ in $(seq 1 20); do curl -fs http://localhost:4173/ > /dev/null && break; sleep 1; done
+          node scripts/audit.mjs http://localhost:4173/ ${{ matrix.engine }}
+
+  checks:
+    name: Validate
+    if: always()
+    needs: [build, audit]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Mọi kiểm tra phải qua
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "$RESULTS"
+          for r in $RESULTS; do test "$r" = success; done

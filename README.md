@@ -25,12 +25,14 @@ Gốc thiết kế là [Astryx](https://github.com/meta/astryx) của Meta (MIT,
 
 | Đường dẫn | Nội dung |
 |---|---|
-| `kit/` | Trang chấm sao: 63 component shadcn + Tailwind có ví dụ sống, xuất CSV và JSON. Xem [kit/README.md](kit/README.md) |
+| `kit/` | Trang chấm sao: 64 component shadcn + Tailwind có ví dụ sống, xuất CSV và JSON. Xem [kit/README.md](kit/README.md) |
 | `guidelines/web-features.md` | Mỗi tính năng của web dùng component nào, tham khảo nguồn nào, trạng thái nào phải có |
 | `guidelines/design-rules.md` | Luật thiết kế của web mình |
+| `guidelines/platforms.md` | Luật cho điện thoại (iOS, Android), máy tính (Windows, macOS) và trình duyệt, kèm nguồn và chỗ nào đã kiểm, chưa kiểm |
 | `guidelines/components/` | Nên và không nên cho từng component, trích từ tài liệu Astryx |
 | `guidelines/layouts.md` | 58 layout mẫu và cái nào hợp trang nào |
 | `tokens/theme.css` | Token màu, chữ, bo góc, chuyển động cho Tailwind 4 và shadcn |
+| `tokens/platform.css` | CSS đa nền tảng dùng chung: ô ngày giờ, forced-colors, thanh cuộn, bàn phím ảo |
 | `tokens/astryx-brand-theme.js` | Cùng bộ màu, dưới dạng theme Astryx |
 | `references/layouts/` | Mã nguồn các layout hợp với web, để tham khảo bố cục |
 | `references/sources.md` | Các thư viện và repo đã tham khảo, kèm giấy phép và cách dùng |

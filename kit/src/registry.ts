@@ -30,6 +30,8 @@ export type Entry = {
   minH?: number
   /** Nguồn tham khảo ngoài Astryx (viết lại, không chép mã). */
   ref?: string
+  /** Khác bản của web ở chỗ nào. Có giá trị nghĩa là đã làm lại, agent đưa vào web cần so sánh. */
+  remade?: string
 }
 
 const w = (f: string) => `app/src/components/ui/${f}`
@@ -56,9 +58,11 @@ export const entries: Entry[] = [
   e("switch", "Công tắc", "Switch", "form", "switch.tsx", null, "form.tsx"),
   e("slider", "Thanh trượt", "Slider", "form", "slider.tsx", null, "form.tsx"),
   e("number-input", "Ô nhập số (− và +)", "NumberInput", "form", "number-input.tsx", null, "form.tsx"),
-  e("date-input", "Ô chọn ngày, giờ", "DateInput, TimeInput, DateTimeInput, Calendar", "form", "input.tsx", "input.tsx", "form.tsx"),
+  e("date-input", "Ô chọn ngày và giờ", "DateInput, TimeInput, DateTimeInput, Calendar", "form", "date-field.tsx", "input.tsx", "web.tsx", 420),
   e("file-input", "Ô tải tệp", "FileInput", "form", "file-input.tsx", null, "form.tsx"),
   e("tokenizer", "Ô nhập nhiều thẻ", "Tokenizer, Token", "form", "tokenizer.tsx", null, "form.tsx"),
+
+  e("weekly-schedule", "Chọn lịch rảnh trong tuần", "(không có trong Astryx)", "form", "weekly-schedule.tsx", null, "web.tsx", undefined, "Cal.com availability, GOV.UK date-input. Web: weekly-availability, availability-grid"),
 
   e("app-shell", "Khung app (thanh bên, thanh trên, thanh dưới)", "AppShell, SideNav, TopNav, MobileNav", "layout", "app-shell.tsx", null, "layout.tsx", 520),
   e("form-layout", "Bố cục form (1 cột → 2 cột)", "FormLayout", "layout", "form-layout.tsx", null, "layout.tsx"),
@@ -110,6 +114,18 @@ export const entries: Entry[] = [
 
   e("chat", "Khung chat", "Chat", "chat", "bubble.tsx", "bubble.tsx", "data.tsx"),
 ]
+
+const remade: Record<string, string> = {
+  "date-input": "Ô ngày gốc làm cứng: kiểm min/max bằng JS (iOS bỏ qua), in thứ ngày bên dưới, giờ chọn bằng select thay cho input type=time, chữ 16px trên cảm ứng.",
+  "weekly-schedule": "Thay availability-grid.tsx: điện thoại chọn theo từng ngày (Sáng/Chiều/Tối, chép sang ngày khác), màn rộng là lưới kéo tô bằng chuột, bấm từng ô bằng cảm ứng, mũi tên di chuyển. Cùng khoá ô giờ×7+thứ.",
+  button: "Thêm prop loading: khoá nút, hiện vòng quay, aria-busy, giữ nguyên bề ngang. Luật 44px cho nút trong Trigger asChild nằm ở tokens/platform.css.",
+  tabs: "Danh sách cuộn ngang trên khung hẹp (không xuống dòng), tab cao 44px. Chưa áp cho web vì trang đăng nhập dàn khít ở cao 740px.",
+  sheet: "Bottom sheet cao tối đa 85dvh, chừa vùng an toàn của iPhone ở đáy.",
+  toast: "Vị trí chừa tai thỏ và thanh home của iPhone.",
+  "file-input": "Thêm nút Chụp ảnh (camera) chỉ hiện trên màn cảm ứng.",
+  "day-strip": "Có nút trước/sau cho chuột (thanh cuộn ẩn trên Windows không còn cách cuộn).",
+}
+entries.forEach((e) => { if (remade[e.id]) e.remade = remade[e.id] })
 
 /** Tên Astryx không dựng riêng, kèm lý do. Để agent thấy trọn bản đồ, không có tên nào âm thầm biến mất. */
 export type Skipped = { astryx: string; status: "gộp vào" | "web không cần"; into?: string; reason: string }

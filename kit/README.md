@@ -1,12 +1,14 @@
 # Trang chấm component
 
-Một trang tĩnh: xem 63 component viết bằng shadcn và Tailwind 4 (cùng stack với web), chấm 1 đến 5 sao, ghi lý do, rồi xuất CSV hoặc JSON cho agent sửa. Từ khoá của mỗi dòng xuất: `kit_file`, `web_file`, `status`, `inspired_by`.
+Một trang tĩnh: xem 64 component viết bằng shadcn và Tailwind 4 (cùng stack với web), chấm 1 đến 5 sao, ghi lý do, rồi xuất CSV hoặc JSON cho agent sửa. Từ khoá của mỗi dòng xuất: `kit_file`, `web_file`, `status`, `inspired_by`.
 
 ```bash
 npm ci             # chạy trong thư mục kit/, hoặc `npm run dev` ở gốc repo
 npm run dev        # xem trên máy
 npm run build      # ra dist/, tự kiểm kiểu
 node src/page/export.check.ts   # kiểm xuất CSV, JSON
+npx playwright install chromium firefox webkit   # một lần
+npx vite preview --port 4173 &  node scripts/audit.mjs   # duyệt 3 engine: cuộn, thanh dính, bàn phím, tràn ngang, vùng chạm
 ```
 
 ## Thêm một component

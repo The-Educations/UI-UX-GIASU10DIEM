@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;450;500;550;600;650;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
 @import "tailwindcss";
 @import "../../tokens/theme.css";
+@import "../../tokens/platform.css";
 
 @custom-variant dark (&:is(.dark, .dark *));
 
@@ -188,9 +189,6 @@
 }
 
 /* Chỉ của trang chấm */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-}
 html { scroll-padding-top: 140px; }
 @keyframes acc-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
 @keyframes acc-up { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
@@ -199,3 +197,9 @@ html { scroll-padding-top: 140px; }
 :where(button, a):where([data-variant][data-size]) { min-height: 44px; border-radius: 10px; box-shadow: none; }
 :where(button, a):where([data-size="icon"], [data-size="icon-lg"]) { min-width: 44px; }
 [data-slot="command-input-wrapper"], [data-slot="command-input"] { min-height: 44px; }
+
+/* Tab dài cuộn ngang trên khung hẹp; mép mờ báo còn nội dung. */
+[data-slot="tabs-list"] { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+[data-slot="tabs-list"]::-webkit-scrollbar { display: none; }
+[data-slot="tabs-list"] { height: auto; min-height: 50px; }
+[data-slot="tabs-trigger"] { min-height: 44px; flex: none; }

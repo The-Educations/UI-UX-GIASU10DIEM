@@ -33,7 +33,7 @@ function Tokenizer({ value, onChange, label, max = 8, className }: { value: stri
           if (e.key === "Backspace" && !draft && value.length) onChange(value.slice(0, -1))
         }}
         onBlur={add}
-        className="min-h-9 min-w-24 flex-1 bg-transparent px-1 text-[15px] outline-none disabled:cursor-not-allowed"
+        data-allow-small className="min-h-9 min-w-24 flex-1 bg-transparent px-1 text-[15px] outline-none disabled:cursor-not-allowed"
       />
     </div>
   )

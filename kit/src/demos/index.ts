@@ -13,7 +13,7 @@ import * as w from "./web"
 export const demos: Record<string, ComponentType> = {
   button: a.button, "icon-button": a.iconButton, "button-group": a.buttonGroup, "segmented-control": a.segmented, "toggle-button": a.toggleButton, "dropdown-menu": a.dropdownMenu,
   field: f.field, "text-input": f.textInput, textarea: f.textarea, "input-group": f.inputGroup, selector: f.selector, typeahead: f.typeahead, "multi-selector": f.multiSelector,
-  checkbox: f.checkbox, "checkbox-list": f.checkboxList, "radio-list": f.radioList, switch: f.switchDemo, slider: f.slider, "number-input": f.numberInput, "date-input": f.dateInput, "file-input": f.fileInput, tokenizer: f.tokenizer,
+  checkbox: f.checkbox, "checkbox-list": f.checkboxList, "radio-list": f.radioList, switch: f.switchDemo, slider: f.slider, "number-input": f.numberInput, "date-input": w.dateInput, "weekly-schedule": w.weeklySchedule, "file-input": f.fileInput, tokenizer: f.tokenizer,
   "app-shell": l.appShell, "form-layout": l.formLayout, section: l.section, "scrollable-area": l.scrollableArea,
   card: l.card, "selectable-card": l.selectableCard, collapsible: l.collapsible, carousel: l.carousel,
   tabs: nv.tabs, breadcrumbs: nv.breadcrumbs, pagination: nv.paginationDemo, stepper: nv.stepper,

@@ -1,10 +1,11 @@
 import * as React from "react"
-import { FileIcon, UploadIcon, XIcon } from "lucide-react"
+import { CameraIcon, FileIcon, UploadIcon, XIcon } from "lucide-react"
 import { cn } from "cn"
 
 /** Chọn hoặc kéo thả tệp. Nút bấm là đường chính (điện thoại không kéo thả được); kiểm loại và dung lượng ngay khi chọn. */
-function FileInput({ accept, maxMB = 5, label, file, onFile, className }: { accept: string; maxMB?: number; label: string; file: File | null; onFile: (f: File | null) => void; className?: string }) {
+function FileInput({ accept, maxMB = 5, label, file, onFile, camera, className }: { accept: string; maxMB?: number; label: string; file: File | null; onFile: (f: File | null) => void; /** "environment" = camera sau, "user" = camera trước. Chỉ hiện nút trên màn cảm ứng. */ camera?: "environment" | "user"; className?: string }) {
   const ref = React.useRef<HTMLInputElement>(null)
+  const cam = React.useRef<HTMLInputElement>(null)
   const [over, setOver] = React.useState(false)
   const [error, setError] = React.useState("")
   const take = (f?: File) => {
@@ -38,6 +39,10 @@ function FileInput({ accept, maxMB = 5, label, file, onFile, className }: { acce
           <span className="text-[12.5px] text-muted-foreground">Tối đa {maxMB} MB</span>
         </button>
       )}
+      {camera && !file ? (
+        <button type="button" onClick={() => cam.current?.click()} className="hidden min-h-11 items-center justify-center gap-2 rounded-lg border bg-card text-sm font-medium outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 [@media(pointer:coarse)]:flex"><CameraIcon className="size-4" />Chụp ảnh</button>
+      ) : null}
+      <input ref={cam} type="file" accept="image/*" capture={camera} className="sr-only" tabIndex={-1} onChange={(e) => { take(e.target.files?.[0]); e.target.value = "" }} />
       <input ref={ref} type="file" accept={accept} className="sr-only" tabIndex={-1} onChange={(e) => { take(e.target.files?.[0]); e.target.value = "" }} />
       {error ? <p role="alert" className="text-sm text-destructive">{error}</p> : null}
     </div>

@@ -6,7 +6,7 @@ export type NavItem = { id: string; label: string; icon: React.ReactNode; badge?
 /** Thanh bên 248px cho máy tính (từ 1024px). */
 function SideNav({ items, active, onSelect, brand, className }: { items: NavItem[]; active: string; onSelect: (id: string) => void; brand: React.ReactNode; className?: string }) {
   return (
-    <nav aria-label="Menu chính" className={cn("hidden w-62 shrink-0 flex-col gap-1 border-r bg-(--surface-side) p-3 lg:flex", className)}>
+    <nav aria-label="Menu chính" className={cn("sticky top-0 hidden h-dvh w-62 shrink-0 flex-col gap-1 self-start overflow-y-auto border-r bg-(--surface-side) p-3 lg:flex", className)}>
       <div className="px-3 py-3 font-serif text-lg font-medium text-primary">{brand}</div>
       {items.map((it) => (
         <button
@@ -38,7 +38,7 @@ function TopNav({ title, actions, className }: { title: React.ReactNode; actions
 /** Thanh dưới cho điện thoại và máy tính bảng (dưới 1024px). Chừa vùng an toàn của iPhone. */
 function MobileNav({ items, active, onSelect, className }: { items: NavItem[]; active: string; onSelect: (id: string) => void; className?: string }) {
   return (
-    <nav aria-label="Menu chính" className={cn("sticky bottom-0 z-10 grid shrink-0 border-t bg-background pb-[env(safe-area-inset-bottom)] lg:hidden", className)} style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>
+    <nav data-slot="mobile-nav" aria-label="Menu chính" className={cn("sticky bottom-0 z-10 grid shrink-0 border-t bg-background pb-[env(safe-area-inset-bottom)] lg:hidden", className)} style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>
       {items.map((it) => (
         <button
           key={it.id}
@@ -59,7 +59,7 @@ function MobileNav({ items, active, onSelect, className }: { items: NavItem[]; a
 /** Khung sau đăng nhập: thanh bên (≥1024px) + thanh trên + nội dung tối đa 1160px + thanh dưới (<1024px). */
 function AppShell({ side, top, bottom, children, className }: { side: React.ReactNode; top: React.ReactNode; bottom: React.ReactNode; children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("flex min-h-[inherit] w-full bg-background", className)}>
+    <div className={cn("flex min-h-dvh w-full bg-background", className)}>
       {side}
       <div className="flex min-w-0 flex-1 flex-col">
         {top}

@@ -4,15 +4,14 @@ import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { SegmentedControl } from "@/components/ui/segmented"
 import { Toggle } from "@/components/ui/toggle"
-import { Spinner } from "@/components/ui/spinner"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Block } from "./helpers"
 
 function Save() {
   const [s, setS] = React.useState<"idle" | "busy" | "done">("idle")
   return (
-    <Button variant="secondary" disabled={s === "busy"} aria-busy={s === "busy"} onClick={() => { setS("busy"); setTimeout(() => setS("done"), 1200) }}>
-      {s === "busy" ? <><Spinner />Đang lưu…</> : s === "done" ? "Đã lưu" : "Lưu thay đổi"}
+    <Button variant="secondary" loading={s === "busy"} onClick={() => { setS("busy"); setTimeout(() => setS("done"), 1200) }}>
+      {s === "busy" ? "Đang lưu…" : s === "done" ? "Đã lưu" : "Lưu thay đổi"}
     </Button>
   )
 }
