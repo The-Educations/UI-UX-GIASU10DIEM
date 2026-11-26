@@ -8,6 +8,7 @@ Cập nhật: 26/11/2026.
 - Tìm thêm bộ UI/UX và kiểm giấy phép (`references/sources.md`).
 - Chọn cách dùng: lấy thiết kế, giữ shadcn và Tailwind. Theme gốc: màu web hiện tại. Hai lựa chọn này do Claude đề xuất và được chủ dự án đồng ý chung.
 - Soạn token, luật thiết kế, luật component.
+- Tìm thêm nguồn ngoài Astryx theo tính năng của web (Cal.com, shadcn-admin, Mantine, Ark UI, Primer, GOV.UK, Ant Design…), kiểm giấy phép bằng GitHub, viết bản đồ tính năng → component ở `guidelines/web-features.md`. Dựng thêm 6 component từ đó: otp-input, day-strip, time-slot-picker, timeline, stat-tile, result-state.
 
 Trang xem thử đã xuất bản (riêng tư, phải được chủ trang chia sẻ mới mở được): https://claude.ai/artifact/ACHVV25rSmWRzaoMByeq6Q
 
@@ -15,7 +16,7 @@ Trang xem thử đã xuất bản (riêng tư, phải được chủ trang chia 
 
 ## Chưa làm
 
-- [ ] Bật GitHub Pages (Settings → Pages → Source: GitHub Actions). Repo đang riêng tư; trang Pages sẽ công khai.
+- [ ] Bật GitHub Pages: Settings → Pages → Source: GitHub Actions (cần quyền admin repo), rồi chạy workflow "Trang chấm component".
 - [ ] Chủ dự án chấm trên trang kit, xuất tệp, đưa cho agent.
 - [ ] Đưa nhánh `fix/touch-targets-44` của web (đã commit, chưa push) lên PR: vá 4 chỗ dưới 44px.
 

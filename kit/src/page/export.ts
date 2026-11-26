@@ -21,6 +21,7 @@ export function rows(r: Ratings) {
     id: e.id,
     name: e.name,
     astryx: e.astryx,
+    inspired_by: e.ref ?? null,
     group: groupLabel[e.group],
     status: e.web ? "web đã có" : "mới",
     stars: r[e.id]?.stars ?? null,
@@ -52,9 +53,9 @@ export function buildJson(r: Ratings, rater: string, now = new Date()) {
 const cell = (v: unknown) => `"${String(v ?? "").replace(/^([=+\-@])/, "'$1").replace(/"/g, '""')}"`
 
 export function buildCsv(r: Ratings) {
-  const head = ["id", "name", "astryx", "group", "status", "stars", "reason", "kit_file", "demo_file", "web_file", "guide_file", "rated_at"]
+  const head = ["id", "name", "astryx", "inspired_by", "group", "status", "stars", "reason", "kit_file", "demo_file", "web_file", "guide_file", "rated_at"]
   const lines = [head, ...rows(r).map((x) => head.map((h) => (x as Record<string, unknown>)[h]))]
-  const gone = skipped.map((s) => ["", "", s.astryx, "", `${s.status}${s.into ? " " + s.into : ""}`, "", s.reason, "", "", "", "", ""])
+  const gone = skipped.map((s) => ["", "", s.astryx, "", "", `${s.status}${s.into ? " " + s.into : ""}`, "", s.reason, "", "", "", "", ""])
   // BOM để Excel đọc đúng tiếng Việt.
   return "﻿" + [...lines, ...gone].map((l) => l.map(cell).join(",")).join("\r\n") + "\r\n"
 }

@@ -8,6 +8,8 @@ Trả lời và viết chữ giao diện bằng tiếng Việt, trừ khi đư�
 2. `tokens/theme.css` (bắt buộc). Chỉ dùng token ở đây.
 3. `guidelines/components/<nhóm>.md` cho component sắp đụng tới.
 4. `guidelines/layouts.md` khi dựng trang mới, rồi mở file mẫu trong `references/layouts/`.
+5. `guidelines/web-features.md` khi làm một tính năng cụ thể: nó chỉ ra component nào đã có trong `kit/`, nguồn tham khảo và trạng thái phải có.
+6. Khi được đưa tệp chấm sao (JSON hoặc CSV xuất từ `kit/`): mỗi dòng có `stars`, `reason`, `kit_file`, `web_file`. Sửa theo `reason` cho dòng từ 1 đến 3 sao hoặc có `reason`, giữ nguyên `kit_file` và `web_file` khớp nhau.
 
 ## Luật cứng
 

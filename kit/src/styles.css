@@ -191,13 +191,11 @@
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
-html { scroll-padding-top: 88px; }
+html { scroll-padding-top: 140px; }
 @keyframes acc-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
 @keyframes acc-up { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
 
-/* Đã vá bên web ở nhánh fix/touch-targets-44 (Button trong Trigger asChild, nút icon, ô tìm Command, Tab). Giữ giống web. */
+/* Đã vá bên web ở nhánh fix/touch-targets-44 (Button trong Trigger asChild, nút icon, ô tìm Command). Giữ giống web. Tab vẫn 36px vì trang đăng nhập của web dàn khít ở cao 740px. */
 :where(button, a):where([data-variant][data-size]) { min-height: 44px; border-radius: 10px; box-shadow: none; }
 :where(button, a):where([data-size="icon"], [data-size="icon-lg"]) { min-width: 44px; }
 [data-slot="command-input-wrapper"], [data-slot="command-input"] { min-height: 44px; }
-[data-slot="tabs-list"] { min-height: 50px; }
-[data-slot="tabs-trigger"] { min-height: 44px; }

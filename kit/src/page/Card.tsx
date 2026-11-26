@@ -63,12 +63,12 @@ function Preview({ entry, width }: { entry: Entry; width: Width }) {
 export function Card({ entry, rating, width, onChange }: { entry: Entry; rating?: Rating; width: Width; onChange: (id: string, p: { stars?: number | null; reason?: string }) => void }) {
   const rid = `why-${entry.id}`
   return (
-    <article id={entry.id} className="scroll-mt-28 rounded-xl border bg-card">
+    <article id={entry.id} className="scroll-mt-40 rounded-xl border bg-card">
       <header className="flex items-start justify-between gap-4 p-4 pb-3 md:px-5">
         <div className="grid min-w-0 gap-1">
           <h3 className="m-0">{entry.name}</h3>
           <p className="m-0 flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground">
-            <span className="break-words">{entry.astryx}</span>
+            <span className="break-words">{entry.ref ? `Tham khảo: ${entry.ref.split(". Web:")[0]}` : entry.astryx}</span>
             <Badge variant={entry.web ? "secondary" : "outline"}>{entry.web ? "web đã có" : "mới"}</Badge>
           </p>
         </div>

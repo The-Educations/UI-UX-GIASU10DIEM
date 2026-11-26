@@ -25,3 +25,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+`kit/src/components/ui/` has 24 files copied from the Gia-Su-10-Diem web app (same owner), the rest are written from scratch. Other libraries listed in `references/sources.md` (Mantine, Ark UI, Cal.com, Kibo UI, coss ui and others) were read for ideas only; no source code was copied from them.

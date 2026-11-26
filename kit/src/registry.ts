@@ -28,10 +28,12 @@ export type Entry = {
   demo: string
   /** Chiều cao tối thiểu của khung xem (px), cho thứ mở lớp phủ. */
   minH?: number
+  /** Nguồn tham khảo ngoài Astryx (viết lại, không chép mã). */
+  ref?: string
 }
 
 const w = (f: string) => `app/src/components/ui/${f}`
-const e = (id: string, name: string, astryx: string, group: GroupId, file: string, web: string | null, demo: string, minH?: number): Entry => ({ id, name, astryx, group, file, web: web ? w(web) : null, demo, minH })
+const e = (id: string, name: string, astryx: string, group: GroupId, file: string, web: string | null, demo: string, minH?: number, ref?: string): Entry => ({ id, name, astryx, group, file, web: web ? w(web) : null, demo, minH, ref })
 
 export const entries: Entry[] = [
   e("button", "Nút", "Button", "action", "button.tsx", "button.tsx", "action.tsx"),
@@ -82,7 +84,7 @@ export const entries: Entry[] = [
   e("empty-state", "Trạng thái trống", "EmptyState", "content", "empty.tsx", "empty.tsx", "content.tsx"),
   e("typography", "Chữ", "Text", "content", "../../styles.css", null, "content.tsx"),
   e("timestamp", "Ngày giờ, số tiền", "Timestamp", "content", "timestamp.tsx", null, "content.tsx"),
-  e("star-rating", "Chấm sao", "(không có trong Astryx)", "content", "star-rating.tsx", null, "content.tsx"),
+  e("star-rating", "Chấm sao", "(không có trong Astryx)", "content", "star-rating.tsx", null, "content.tsx", undefined, "Mantine Rating, Ark UI rating-group. Web: rating-section, tutor-review-dialog"),
 
   e("badge", "Nhãn nhỏ", "Badge", "feedback", "badge.tsx", "badge.tsx", "feedback.tsx"),
   e("banner", "Thông báo trong trang", "Banner", "feedback", "banner.tsx", "alert.tsx", "feedback.tsx"),
@@ -98,6 +100,13 @@ export const entries: Entry[] = [
   e("popover", "Hộp nổi", "Popover", "overlay", "popover.tsx", "popover.tsx", "overlay.tsx", 320),
   e("command-palette", "Tìm nhanh", "CommandPalette", "overlay", "command.tsx", "command.tsx", "overlay.tsx"),
   e("toast", "Thông báo nổi", "Toast", "overlay", "sonner.tsx", "sonner.tsx", "overlay.tsx", 260),
+
+  e("otp-input", "Ô nhập mã xác minh", "(không có trong Astryx)", "form", "otp-input.tsx", null, "web.tsx", undefined, "coss ui otp-field, Ark UI pin-input, Mantine PinInput. Web: signup-code, verify-email"),
+  e("day-strip", "Dải ngày chọn buổi học", "(không có trong Astryx)", "form", "day-strip.tsx", null, "web.tsx", undefined, "Kibo UI mini-calendar, Cal.com Booker. Web: availability-grid, booking-card"),
+  e("time-slot-picker", "Chọn khung giờ", "(không có trong Astryx)", "form", "time-slot-picker.tsx", null, "web.tsx", undefined, "Cal.com Booker (AvailableTimeSlots). Web: booking-card, event-dialog"),
+  e("timeline", "Tiến trình, lịch sử", "(không có trong Astryx)", "content", "timeline.tsx", null, "web.tsx", undefined, "Mantine Timeline, Ant Design Steps. Web: session-actions, wallet"),
+  e("stat-tile", "Ô số liệu", "(không có trong Astryx)", "content", "stat-tile.tsx", null, "web.tsx", undefined, "HyperUI stats, shadcn-admin dashboard. Web: today-panel, balance-chip"),
+  e("result-state", "Trang lỗi 403, 404, 500, bảo trì", "(không có trong Astryx)", "feedback", "result-state.tsx", null, "web.tsx", undefined, "shadcn-admin errors, Ant Design Result, Primer Blankslate. Web: tutor-404, error-boundary"),
 
   e("chat", "Khung chat", "Chat", "chat", "bubble.tsx", "bubble.tsx", "data.tsx"),
 ]

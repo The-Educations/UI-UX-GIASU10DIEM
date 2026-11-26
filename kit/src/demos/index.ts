@@ -7,6 +7,7 @@ import * as fb from "./feedback"
 import * as o from "./overlay"
 import * as c from "./content"
 import * as d from "./data"
+import * as w from "./web"
 
 // khoá = id trong registry.ts
 export const demos: Record<string, ComponentType> = {
@@ -21,4 +22,5 @@ export const demos: Record<string, ComponentType> = {
   badge: fb.badge, banner: fb.banner, "progress-bar": fb.progressBar, skeleton: fb.skeleton, spinner: fb.spinner, "status-dot": fb.statusDot, "info-tip": fb.infoTip,
   dialog: o.dialog, "alert-dialog": o.alertDialog, sheet: o.sheet, popover: o.popover, "command-palette": o.commandPalette, toast: o.toastDemo,
   chat: d.chat,
+  "otp-input": w.otpInput, timeline: w.timeline, "day-strip": w.dayStrip, "time-slot-picker": w.timeSlots, "result-state": w.resultState, "stat-tile": w.statTile,
 }
